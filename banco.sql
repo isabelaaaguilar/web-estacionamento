@@ -62,8 +62,6 @@ insert into Cliente values (303030, 'Livia Porto Seguro', '2002/01/30');
 insert into Cliente values (404040, 'Nathalia Terere', '2000/07/19');
 
 
-select * from cliente;
-
 insert into modelo values ( 1, 'Sedan');
 insert into modelo values ( 2, 'Van');
 

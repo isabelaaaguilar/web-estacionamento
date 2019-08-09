@@ -1,39 +1,25 @@
-<?php
-$estacionamento = 
-	[
+<?php 
+
+	$conexao = new PDO("mysql:host=localhost;dbname=estacionamento", "estacionamento", "joselia");
+
+	$sql = "SELECT * FROM Estaciona";
+	$resultado = $conexao->query($sql);
+
+	$estacionamento = $resultado->fetchAll();
+
+	/*[
 		[
-			'cod'=>'01',
-			'patio_num'=>'10',
-			'veiculo_placa'=>'GTA1234',
-			'dtEntrada'=>'11/07/2019',
-			'dtSaida'=>'12/07/2019',
-			'hsEntrada'=>'14:00',
-			'hsSaida'=>'17:00'
+			'cpf'=>'04080660608',
+			'nome'=>'Livão',
+			'dtNasc'=>'28/11/00'
 		],
-
 		[
-			'cod'=>'02',
-			'patio_num'=>'20',
-			'veiculo_placa'=>'ISA4321',
-			'dtEntrada'=>'13/07/2019',
-			'dtSaida'=>'14/07/2019',
-			'hsEntrada'=>'15:00',
-			'hsSaida'=> '19:00'
-		],
-
-		[
-			'cod'=>'03',
-			'patio_num'=>'20',
-			'veiculo_placa'=>'MAR1404',
-			'dtEntrada'=>'13/07/2019',
-			'dtSaida'=>'',
-			'hsEntrada'=>'16:00',
-			'hsSaida'=> ''
-		],
-
-	];
-?>
-
+			'cpf'=>'15107352604',
+			'nome'=>'Livinha',
+			'dtNasc'=>'14/01/02'
+		]
+	];*/
+ ?>
 
 
 <!DOCTYPE html>
@@ -69,8 +55,8 @@ $estacionamento =
 							<td><?= $e['cod'] ?></td>
 							<td><?= $e['patio_num'] ?></td>
 							<td><?= $e['veiculo_placa'] ?></td>
-							<td><?= $e['dtEntrada'] . ' ' . $e['hsEntrada'] ?></td>
-							<td><?= $e['dtSaida'] . ' ' . $e['hsSaida'] ?></td>
+							<td><?= $e['dtentrada'] . ' ' . $e['hsentrada'] ?></td>
+							<td><?= $e['dtsaida'] . ' ' . $e['hssaida'] ?></td>
 						</tr>
 						<?php endforeach; ?>
 					</tbody>
