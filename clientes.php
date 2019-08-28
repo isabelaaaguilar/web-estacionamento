@@ -1,6 +1,9 @@
 <?php 
+	$banco= "estacionamento";
+	$usuario= "estacionamento";
+	$senha= "joselia";
 
-	$conexao = new PDO("mysql:host=localhost;dbname=estacionamento", "estacionamento", "joselia");
+	$conexao = new PDO("mysql:host=localhost;dbname=${banco}", $usuario, $senha);
 
 	$sql = "SELECT * FROM Cliente";
 	$resultado = $conexao->query($sql);

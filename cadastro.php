@@ -1,3 +1,29 @@
+<?php 
+var_dump($_POST);
+
+if(count($_POST)>0)
+{
+	//Inserir no Banco de Dados
+	$banco= "estacionamento";
+	$usuario= "estacionamento";
+	$senha= "joselia";
+
+	$conexao = new PDO("mysql:host=localhost;dbname=${banco}", $usuario, $senha);
+
+	$sql = "INSERT INTO Cliente VALUES (?, ?, ?)";
+
+	$comando = $conexao->prepare($sql);
+
+	$comando->execute([
+		$_POST ['cpf'],
+		$_POST ['nome'],
+		$_POST ['dt'],
+	]);
+	//redireciona para a página de clientes.php
+	header('Location: clientes.php');
+}
+
+ ?>
 <!DOCTYPE html>
  <html lang="en">
  <head>
@@ -13,8 +39,8 @@
 	</header>
 	<div id="container">
 		<main>
-			<h2>Novo Clientes</h2>
-			<form action="clientes.php" method="post">
+			<h2>Novo Cliente</h2>
+			<form action="cadastro.php" method="post">
 			<p>
 				<label for="icpf">CPF</label>
 				<input type="text" name="cpf" id="icpf">				
