@@ -10,19 +10,20 @@ if(count($_POST)>0)
 
 	$conexao = new PDO("mysql:host=localhost;dbname=${banco}", $usuario, $senha);
 
-	$sql = "INSERT INTO Cliente VALUES (?, ?, ?)";
+	$sql = "INSERT INTO Veiculo VALUES (?, ?, ?, ?)";
 
 	$comando = $conexao->prepare($sql);
 
 	$sucesso = $comando->execute([
-		$_POST ['cpf'],
-		$_POST ['nome'],
-		$_POST ['dt'],
+		$_POST ['placa'],
+		$_POST ['modelo_codmod'],
+		$_POST ['cliente_cpf'],
+		$_POST ['cor'],
 	]);
 	$mensagem = '';
 	if ($sucesso)
 	{
-		$mensagem = "Cliente cadastrado!";
+		$mensagem = "Veiculo cadastrado!";
 	}
 	else
 	{
@@ -32,7 +33,7 @@ if(count($_POST)>0)
 	// uso um cookie para passar a mensagem para a página de clientes
 	setcookie('mensagem', $mensagem);
 	//redireciona para a página de clientes.php
-	header('Location: clientes.php');
+	header('Location: veiculos.php');
 }
 
  ?>
@@ -41,7 +42,7 @@ if(count($_POST)>0)
  <head>
  	<meta charset="UTF-8">
  	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
- 	<title>Clientes - IF Park</title>
+ 	<title>Veículos - IF Park</title>
  	<link rel="stylesheet" href="css/estilo.css">
  </head>
  <body>
@@ -60,19 +61,23 @@ if(count($_POST)>0)
 	</header>
 	<div id="container">
 		<main>
-			<h2>Novo Cliente</h2>
-			<form action="cadastro.php" method="post">
+			<h2>Novo Veículo</h2>
+			<form action="caveiculo.php" method="post">
 			<p>
-				<label for="icpf">CPF</label>
-				<input type="text" name="cpf" id="icpf">				
+				<label for="iplaca">Placa</label>
+				<input type="text" name="placa" id="iplaca">				
 			</p>
 			<p>
-				<label for="inome">Nome</label>
-				<input type="text" name="nome" id="inome">				
+				<label for="imodelo_codmod">Modelo</label>
+				<input type="text" name="modelo_codmod" id="imodelo_codmod">				
 			</p>
 			<p>
-				<label for="idt">Data de Nascimento</label>
-				<input type="date" name="dt" id="idt">				
+				<label for="icliente_cpf">CPF do Cliente</label>
+				<input type="text" name="cliente_cpf" id="icliente_cpf">				
+			</p>
+			<p>
+				<label for="icor">Cor</label>
+				<input type="text" name="cor" id="icor">				
 			</p>
 			<p>
 				<button type="submit">Salvar</button>
