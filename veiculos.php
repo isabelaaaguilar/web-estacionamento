@@ -2,7 +2,13 @@
 
 	$conexao = new PDO("mysql:host=localhost;dbname=estacionamento", "estacionamento", "joselia");
 
-	$sql = "SELECT * FROM Veiculo";
+	$sql = <<<EOL
+	SELECT placa, desc_2, Nome,cor 
+      FROM Veiculo, Modelo, Cliente 
+     WHERE modelo_codmod= codmod 
+       AND cliente_cpf=cpf
+EOL;
+
 	$resultado = $conexao->query($sql);
 
 	$veiculos = $resultado->fetchAll();
@@ -16,18 +22,6 @@
 		setcookie('mensagem', '', 1);
 	}
 
-	/*[
-		[
-			'cpf'=>'04080660608',
-			'nome'=>'Livão',
-			'dtNasc'=>'28/11/00'
-		],
-		[
-			'cpf'=>'15107352604',
-			'nome'=>'Livinha',
-			'dtNasc'=>'14/01/02'
-		]
-	];*/
  ?>
  <!DOCTYPE html>
  <html lang="en">
@@ -77,8 +71,8 @@
 						<?php foreach ($veiculos as $veiculo): ?>
 						<tr>
 							<td><?= $veiculo['placa'] ?></td>
-							<td><?= $veiculo['modelo_codmod'] ?></td>
-							<td><?= $veiculo['cliente_cpf'] ?></td>
+							<td><?= $veiculo['desc_2'] ?></td>
+							<td><?= $veiculo['Nome'] ?></td>
 							<td><?= $veiculo['cor'] ?></td>
 						</tr>
 						<?php endforeach; ?>

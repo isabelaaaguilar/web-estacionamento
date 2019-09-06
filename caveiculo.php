@@ -1,4 +1,4 @@
-<?php 
+ <?php 
 //var_dump($_POST);
 
 if(count($_POST)>0)
@@ -35,6 +35,10 @@ if(count($_POST)>0)
 	//redireciona para a página de clientes.php
 	header('Location: veiculos.php');
 }
+$conexao = new PDO("mysql:host=localhost;dbname=estacionamento", "estacionamento", "joselia");
+$sql = "SELECT * FROM Modelo";
+$comando = $conexao->query($sql);
+$modelos = $comando->fetchAll();
 
  ?>
 <!DOCTYPE html>
@@ -69,7 +73,18 @@ if(count($_POST)>0)
 			</p>
 			<p>
 				<label for="imodelo_codmod">Modelo</label>
-				<input type="text" name="modelo_codmod" id="imodelo_codmod">				
+				<!--input type="text" name="modelo_codmod" id="imodelo_codmod"-->		
+				<select id="imodelo" name="modelo">
+
+                <?php foreach ($modelos as $m): ?>
+
+                    <option value="<?= $m['codmod'] ?>">
+                        <?= $m['desc_2'] ?>
+                    </option>
+
+                <?php endforeach; ?>
+
+            	</select>     	
 			</p>
 			<p>
 				<label for="icliente_cpf">CPF do Cliente</label>
